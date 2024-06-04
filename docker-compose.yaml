@@ -1,0 +1,25 @@
+name: 2024_ads-frontend
+
+services:
+
+  app:
+    container_name: ${COMPOSE_PROJECT_NAME}-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${BUILD_TARGET:-dev}
+    restart: unless-stopped
+    environment:
+      - PORT=${APP_PORT}
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    # network_mode: "host"
+    deploy:
+      resources:
+        # aws lightsail container (nano)
+        limits:
+          cpus: '0.25'
+          memory: '512MB'
+          
