@@ -10,11 +10,3 @@ services:
     restart: unless-stopped
     ports:
       - ${APP_PORT}:${APP_PORT}
-    # network_mode: "host"
-    deploy:
-      resources:
-        # aws lightsail container (nano)
-        limits:
-          cpus: '0.25'
-          memory: '512MB'
-          
